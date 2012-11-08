@@ -1,4 +1,4 @@
-class MpayConfirmationController < Spree::BaseController
+class Spree::MpayConfirmationController < Spree::BaseController
 
   # possible transaction states
   TRANSACTION_STATES = ["ERROR", "RESERVED", "BILLED", "REVERSED", "CREDITED", "SUSPENDED"]

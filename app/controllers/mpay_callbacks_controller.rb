@@ -1,4 +1,4 @@
-class MpayCallbacksController < Spree::BaseController
+class Spree::MpayCallbacksController < Spree::BaseController
   def index
 
     @order = Spree::BillingIntegration::Mpay.current.find_order(params["TID"])
