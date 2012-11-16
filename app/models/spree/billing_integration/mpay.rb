@@ -21,7 +21,7 @@ class Spree::BillingIntegration::Mpay < Spree::BillingIntegration
   def find_order(tid)
     if prefers_secret_phrase?
       if tid.starts_with?(preferred_secret_phrase)
-        tid = tid.gsub(/^#{preferred_secret_phrase}_/, "")
+        tid = tid.gsub("#{preferred_secret_phrase}_", "")
       else
         raise "unknown secret phrase: #{tid}".inspect
       end
