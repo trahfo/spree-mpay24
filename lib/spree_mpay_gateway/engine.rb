@@ -13,7 +13,7 @@ module SpreeMpayGateway
     initializer "spree.mpay_gateway.activation", :after => "spree.register.payment_methods" do |app|
       # integrate our god-frickin' view helper
       Spree::BaseController.class_eval do
-        helper MpayHelper
+        helper Spree::MpayHelper
       end
     end
 
