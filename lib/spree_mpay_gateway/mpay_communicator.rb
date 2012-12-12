@@ -30,7 +30,13 @@ module SpreeMpayGateway
     def self.send_request(merchant_id, cmd, test_mode=true)
       url = URI.parse(gateway_url(test_mode))
       request = Net::HTTP::Post.new(url.path,{"Content-Type"=>"text/xml"})
-      http = Net::HTTP.new(url.host, url.port)
+
+      http = if ENV['PROXIMO_URL']
+        proxy = URI.parse(ENV['PROXIMO_URL'])
+        Net::HTTP::Proxy(proxy.host, proxy.port, proxy.user, proxy.password).new(url.host, url.port)
+      else
+        Net::HTTP.new(url.host, url.port)
+      end
 
       # verify through SSL
       http.use_ssl = true
