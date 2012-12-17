@@ -1,7 +1,11 @@
 module Spree
 	class MpayCallbacksController < Spree::BaseController
-	  def index
 
+    def ssl_required?
+      ssl_supported?
+    end
+
+	  def index
 	    @order = Spree::BillingIntegration::Mpay.current.find_order(params["TID"])
 	    
 	    order_params = {:checkout_complete => true}
