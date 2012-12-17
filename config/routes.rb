@@ -1,4 +1,6 @@
 Spree::Core::Engine.routes.prepend do
-  resources :mpay_callbacks, :only => [:index]
-  resource :mpay_confirmation, :controller => 'mpay_confirmation', :only => [:index]
+  
+  match 'mpay_callbacks' => 'mpay_callbacks#index'
+  match 'mpay_confirmation' => 'mpay_confirmation#index'
+
 end
