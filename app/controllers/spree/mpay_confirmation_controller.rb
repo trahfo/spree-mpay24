@@ -1,6 +1,10 @@
 module Spree
   class MpayConfirmationController < Spree::BaseController
 
+    def ssl_required?
+      ssl_supported?
+    end
+
     # possible transaction states
     TRANSACTION_STATES = ["ERROR", "RESERVED", "BILLED", "REVERSED", "CREDITED", "SUSPENDED"]
 
@@ -9,8 +13,7 @@ module Spree
 
     before_filter :verify_ip, :only => :show
 
-    # Confirmation interface is a GET request
-    def show
+    def index
       check_operation(params["OPERATION"])
       check_status(params["STATUS"])
 
